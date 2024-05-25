@@ -8,8 +8,8 @@ The goal of this project is to create a service that can be used to store and re
 # Features
 
 ### General Features
-- [ ] Get Pokemon by name
-- [ ] Get Pokemon by dex number
+- [x] Get Pokemon by name
+- [x] Get Pokemon by dex number
 - [ ] Get Pokemon by type
 
 ### Trainer Features
@@ -21,9 +21,8 @@ The goal of this project is to create a service that can be used to store and re
 # Technologies
 - PokeApi
 - Redis
-- Docker / docker-compose
 - Postgress / MongoDB
 - Oauth / JWT technology
 
 - Python
-- FastAPI / Flask
+- FastAPI
