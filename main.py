@@ -1,15 +1,20 @@
 from dotenv import load_dotenv
 load_dotenv()
+
 from fastapi import FastAPI
-from .shared import Config
+from shared import Config
+from routes import routes
 
 config = Config()
 
 app = FastAPI()
 
 @app.get("/")
-async def read_root():
+async def hello():
     return {"message": "Hello, World!"}
+
+app.include_router(routes)
+
 
 if __name__ == "__main__":
     import uvicorn
