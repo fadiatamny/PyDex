@@ -1,3 +1,6 @@
 requests
 redis
 python-dotenv
+pytest
+fastapi
+uvicorn

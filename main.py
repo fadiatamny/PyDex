@@ -1,10 +1,16 @@
 from dotenv import load_dotenv
 load_dotenv()
+from fastapi import FastAPI
+from .shared import Config
 
-from services import PokeAPI
+config = Config()
+
+app = FastAPI()
+
+@app.get("/")
+async def read_root():
+    return {"message": "Hello, World!"}
 
 if __name__ == "__main__":
-
-    poke_api = PokeAPI()
-    response = poke_api.get("bulbasaur")
-    response = poke_api.get(1)
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=config['port'])
