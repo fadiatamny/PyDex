@@ -1,11 +1,11 @@
 from unittest import TestCase
 from unittest.mock import patch, MagicMock
 import json
-from services import PokeAPI
+from src.services import PokeAPI
 
 class TestPokeAPI(TestCase):
 
-    @patch('shared.CacheHandler.create')
+    @patch('src.shared.CacheHandler.create')
     @patch('requests.get')
     def test_get_pokemon_cached(self, mock_requests_get, mock_cache_create):
         mock_cache_handler = MagicMock()
@@ -24,7 +24,7 @@ class TestPokeAPI(TestCase):
         self.assertEqual(result, cached_pokemon)
         mock_requests_get.assert_not_called()
 
-    @patch('shared.CacheHandler.create')
+    @patch('src.shared.CacheHandler.create')
     @patch('requests.get')
     def test_get_pokemon_not_cached(self, mock_requests_get, mock_cache_create):
         mock_cache_handler = MagicMock()
