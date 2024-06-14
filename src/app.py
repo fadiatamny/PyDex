@@ -2,8 +2,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from fastapi import FastAPI
-from shared import Config
-from routes import routes
+from .shared import Config
+from .routes import routes
 
 config = Config()
 

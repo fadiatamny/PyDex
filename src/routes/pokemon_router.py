@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from controllers import PokemonController
-from models import Pokemon
+from src.controllers import PokemonController
+from src.models import Pokemon
 
 router = APIRouter()
 controller = PokemonController()

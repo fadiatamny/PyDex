@@ -1,4 +1,4 @@
-from services import PokeAPI
+from src.services import PokeAPI
 
 class PokemonController:
     def __init__(self):

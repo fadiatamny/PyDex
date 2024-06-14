@@ -1,7 +1,7 @@
 import json
 import requests
 
-from shared import CacheHandler
+from src.shared import CacheHandler
 
 class PokeAPI:
     def __init__(self):
