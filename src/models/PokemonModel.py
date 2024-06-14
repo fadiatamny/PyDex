@@ -4,7 +4,7 @@ class Pokemon(BaseModel):
     id: int
     name: str
 
-    class Config:
-        extra = "allow"
-        validate_default = True
-    
+    __config__ = {
+        "extra": "allow",
+        "validate_default": True
+    }

@@ -1,6 +1,7 @@
 import json
 import requests
 
+from src.models import PokeQuery
 from src.shared import CacheHandler
 
 class PokeAPI:
@@ -29,3 +30,6 @@ class PokeAPI:
         redis.set(pokemon['id'], json.dumps(pokemon))
 
         return pokemon
+    
+    def query(self, query: PokeQuery):
+        pass
