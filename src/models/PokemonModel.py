@@ -6,5 +6,5 @@ class Pokemon(BaseModel):
 
     class Config:
         extra = "allow"
-        validate_all = True
+        validate_default = True
     
