@@ -8,3 +8,12 @@ class Pokemon(BaseModel):
         "extra": "allow",
         "validate_default": True
     }
+
+class APIPokemon(Pokemon):
+    id: int
+    name: str
+    type: str
+
+    __config__ = {
+        "validate_default": True
+    }

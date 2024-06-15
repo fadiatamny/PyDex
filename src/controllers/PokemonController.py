@@ -16,4 +16,4 @@ class PokemonController:
         if query.type and query.name:
             raise PyDexError(
                 "Only one of 'type' or 'name' can be provided.", 400)
-        return self.service.query(query)
+        return self.service.query(name=query.name, type=query.type)
