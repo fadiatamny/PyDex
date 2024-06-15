@@ -5,6 +5,6 @@ Config = {
     'redis': {
         'host': os.getenv('REDIS_HOST', 'localhost'),
         'port': os.getenv('REDIS_PORT', 6379),
-        'active': os.getenv('DISABLE_CACHE', 'true') == 'true'
+        'active': not (os.getenv('DISABLE_CACHE', 'true') == 'true')
     }
 }
