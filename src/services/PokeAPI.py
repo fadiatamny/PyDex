@@ -1,7 +1,7 @@
 import json
 import requests
 
-from src.models import PokeQuery
+from src.models import PokeQuery, PyDexError
 from src.shared import CacheHandler
 
 class PokeAPI:
@@ -31,5 +31,22 @@ class PokeAPI:
 
         return pokemon
     
+    def _query_by_name(self, name: str):
+        url = f"{self.base_url}/pokemon/{name}"
+        response = requests.get(url)
+        pokemon = response.json()
+        return pokemon
+    
+    def _query_by_type(self, type: str):
+        url = f"{self.base_url}/type/{type}"
+        response = requests.get(url)
+        pokemon = response.json()
+        return pokemon
+
     def query(self, query: PokeQuery):
-        pass
+        if (query.name):
+            return self._query_by_name(query.name)
+        elif (query.type):
+            return self._query_by_type(query.type.value)
+        else:
+            raise PyDexError("Invalid query. Please provide a name or type.", 400)

@@ -1,27 +1,27 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 from enum import Enum
 
 
 class PokemonType(Enum):
-    NORMAL = "Normal"
-    FIRE = "Fire"
-    WATER = "Water"
-    ELECTRIC = "Electric"
-    GRASS = "Grass"
-    ICE = "Ice"
-    FIGHTING = "Fighting"
-    POISON = "Poison"
-    GROUND = "Ground"
-    FLYING = "Flying"
-    PSYCHIC = "Psychic"
-    BUG = "Bug"
-    ROCK = "Rock"
-    GHOST = "Ghost"
-    DARK = "Dark"
-    DRAGON = "Dragon"
-    STEEL = "Steel"
-    FAIRY = "Fairy"
+    NORMAL = "normal"
+    FIRE = "fire"
+    WATER = "water"
+    ELECTRIC = "electric"
+    GRASS = "grass"
+    ICE = "ice"
+    FIGHTING = "fighting"
+    POISON = "poison"
+    GROUND = "ground"
+    FLYING = "flying"
+    PSYCHIC = "psychic"
+    BUG = "bug"
+    ROCK = "rock"
+    GHOST = "ghost"
+    DARK = "dark"
+    DRAGON = "dragon"
+    STEEL = "steel"
+    FAIRY = "fairy"
 
     @staticmethod
     def from_number(number):
@@ -49,10 +49,25 @@ class PokemonType(Enum):
 
 
 class PokeQuery(BaseModel):
-    name: str | None
-    type: PokemonType
-    limit: int
-    offset: int
+    name: str | None = None
+    type: PokemonType | None = None
+    page: int = 0
+    limit: int = 100
+
+    @field_validator('type', mode="before")
+    def type_validator(cls, v):
+        if isinstance(v, PokemonType):
+            return v
+
+        if not isinstance(v, str):
+            raise ValueError(f"Invalid Pokemon type: {v}")
+        
+        v = v.lower()
+
+        if v in {e.value.lower() for e in PokemonType}:
+            return PokemonType(v)
+        else:
+            raise ValueError(f"Invalid Pokemon type: {v}")
 
     __config__ = {
         "extra": "allow",

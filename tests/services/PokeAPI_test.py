@@ -1,6 +1,7 @@
 from unittest import TestCase
 from unittest.mock import patch, MagicMock
 import json
+from src.models.PokeQueryModel import PokeQuery
 from src.services import PokeAPI
 
 class TestPokeAPI(TestCase):
@@ -48,3 +49,17 @@ class TestPokeAPI(TestCase):
         mock_cache_handler.set.assert_any_call('bulbasaur', 1)
         mock_cache_handler.set.assert_any_call(1, json.dumps(response_data))
         mock_requests_get.assert_called_once_with('https://pokeapi.co/api/v2/pokemon/bulbasaur')
+
+
+    @patch('requests.get')
+    def test_query_pokemon_by_name(self, mock_requests_get):
+        api = PokeAPI()
+        _ = api.query(PokeQuery(**{'name': 'bulbasaur'}))    
+        mock_requests_get.assert_called_once_with('https://pokeapi.co/api/v2/pokemon/bulbasaur')
+
+
+    @patch('requests.get')
+    def test_query_pokemon_by_type(self, mock_requests_get):
+        api = PokeAPI()
+        _ = api.query(PokeQuery(**{'type': 'gRass'}))
+        mock_requests_get.assert_called_once_with('https://pokeapi.co/api/v2/type/grass')
