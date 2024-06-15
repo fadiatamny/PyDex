@@ -10,10 +10,4 @@ class PokemonController:
         return self.service.get(identifier)
 
     async def query(self, query: PokeQuery):
-        if not query.type and not query.name:
-            raise PyDexError(
-                "At least one of 'type' or 'name' must be provided.", 400)
-        if query.type and query.name:
-            raise PyDexError(
-                "Only one of 'type' or 'name' can be provided.", 400)
-        return self.service.query(name=query.name, type=query.type)
+        return self.service.query(query=query)
