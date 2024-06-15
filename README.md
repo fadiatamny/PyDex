@@ -10,7 +10,7 @@ The goal of this project is to create a service that can be used to store and re
 ### General Features
 - [x] Get Pokemon by name
 - [x] Get Pokemon by dex number
-- [ ] Get Pokemon by type
+- [x] Get Pokemon by type
 
 ### Trainer Features
 - [ ] Add Pokemon to pokedex
